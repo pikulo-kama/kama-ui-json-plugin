@@ -8,8 +8,8 @@ from kui_json_plugin.provider.tr import JsonTextResourceProvider
 
 _application = KamaApplication()
 
-_application.metadata_provider = JsonMetadataProvider()
-_application.section_provider = JsonControllerSectionProvider()
+_application.provider.metadata = JsonMetadataProvider()
+_application.provider.section = JsonControllerSectionProvider()
 _application.text_resources.set_provider(JsonTextResourceProvider())
 
 load_colors(_application)
