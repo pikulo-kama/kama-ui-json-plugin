@@ -1,0 +1,29 @@
+[project]
+name = "kama-ui-json-plugin"
+license = {file = "LICENSE"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+version = "0.1.0"
+dependencies = [
+    "kama-ui @ git+https://github.com/pikulo-kama/kama-ui.git",
+    "kama-tr @ git+https://github.com/pikulo-kama/kama-tr.git"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest-cov >= 7.0.0, < 8.0.0"
+]
+
+[project.entry-points."kama_ui.plugins"]
+ui_plugin = "kui_json_plugin.ui_plugin"
+
+[tool.coverage.run]
+source = ["kui_json_plugin"]
+disable_warnings = ["module-not-measured"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "--cov=kui_json_plugin --cov-report=term-missing"
