@@ -1,9 +1,7 @@
 import os.path
 
 from kui.core.app import KamaApplication
-from kui.style.color import KamaComposedColor, KamaColor
-from kui.style.font import KamaFont
-from kui.style.image import DynamicResource
+from kui.style.type import KamaComposedColor, KamaColor, KamaFont, DynamicResource
 from kutil.file import read_file
 from kutil.file_type import JSON
 
