@@ -1,7 +1,7 @@
 import os
 
 from kui.core.controller import WidgetController
-from kui.core.provider import ControllerSectionProvider, Section
+from kui.core.service.provider import ControllerSectionProvider, Section
 from kui.core.shortcut import resolve_config
 from kutil.file import read_file
 from kutil.file_type import JSON

@@ -10,7 +10,7 @@ _application = KamaApplication()
 
 _application.provider.metadata = JsonMetadataProvider()
 _application.provider.section = JsonControllerSectionProvider()
-_application.text_resources.set_provider(JsonTextResourceProvider())
+_application.translations.set_provider(JsonTextResourceProvider())
 
 load_colors(_application)
 load_fonts(_application)
