@@ -1,7 +1,7 @@
 import os
 
 from kui.core.metadata import WidgetMetadata
-from kui.core.service.provider import MetadataProvider
+from kui.core.provider import MetadataProvider
 from kui.core.shortcut import resolve_config
 from kui.transformer.widget import JSONWidgetDataTransformer
 from kutil.file import read_file
