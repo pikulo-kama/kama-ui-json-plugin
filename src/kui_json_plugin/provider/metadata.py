@@ -2,7 +2,7 @@ import os
 
 from kui.core.metadata import WidgetMetadata
 from kui.core.provider import MetadataProvider
-from kui.core.shortcut import resolve_config
+from kui.core.shortcut import resolve_data
 from kui.transformer.widget import JSONWidgetDataTransformer
 from kutil.file import read_file
 from kutil.file_type import JSON
@@ -24,7 +24,7 @@ class JsonMetadataProvider(MetadataProvider):
     def provide(self, section_id: str) -> list[WidgetMetadata]:
 
         section_file_name = JSON.add_extension(section_id)
-        metadata_file_path = resolve_config("widgets", section_file_name)
+        metadata_file_path = resolve_data("widgets", section_file_name)
 
         if not os.path.exists(metadata_file_path):
             return []

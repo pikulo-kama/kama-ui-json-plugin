@@ -2,7 +2,7 @@ import os
 
 from kui.core.controller import WidgetController
 from kui.core.provider import ControllerSectionProvider, Section
-from kui.core.shortcut import resolve_config
+from kui.core.shortcut import resolve_data
 from kutil.file import read_file
 from kutil.file_type import JSON
 
@@ -13,7 +13,7 @@ class JsonControllerSectionProvider(ControllerSectionProvider):
 
         sections = []
         config_file_name = JSON.add_extension(controller.__class__.__name__)
-        section_file_path = resolve_config("sections", config_file_name)
+        section_file_path = resolve_data("sections", config_file_name)
 
         if not os.path.exists(section_file_path):
             return sections

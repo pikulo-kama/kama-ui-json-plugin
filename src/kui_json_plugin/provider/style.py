@@ -1,14 +1,14 @@
 import os.path
 
 from kui.core.app import KamaApplication
-from kui.style.type import KamaComposedColor, KamaColor, KamaFont, DynamicResource
+from kui.style.type import KamaComposedColor, KamaColor, KamaFont, DynamicImage
 from kutil.file import read_file
 from kutil.file_type import JSON
 
 
 def load_colors(application: KamaApplication):
 
-    colors_path = application.discovery.config(JSON.add_extension("colors"))
+    colors_path = application.discovery.data(JSON.add_extension("colors"))
 
     if not os.path.exists(colors_path):
         return
@@ -25,7 +25,7 @@ def load_colors(application: KamaApplication):
 
 
 def load_fonts(application: KamaApplication):
-    fonts_path = application.discovery.config(JSON.add_extension("fonts"))
+    fonts_path = application.discovery.data(JSON.add_extension("fonts"))
 
     if not os.path.exists(fonts_path):
         return
@@ -37,14 +37,14 @@ def load_fonts(application: KamaApplication):
         application.style.add_font(font)
 
 
-def load_dynamic_resources(application: KamaApplication):
-    resources_path = application.discovery.config(JSON.add_extension("resources"))
+def load_dynamic_images(application: KamaApplication):
+    images_path = application.discovery.data(JSON.add_extension("images"))
 
-    if not os.path.exists(resources_path):
+    if not os.path.exists(images_path):
         return
 
-    resources = read_file(resources_path, as_json=True)
+    images = read_file(images_path, as_json=True)
 
-    for resource_object in resources:
-        resource = DynamicResource(**resource_object)
-        application.style.add_dynamic_resource(resource)
+    for image_object in images:
+        image = DynamicImage(**image_object)
+        application.style.add_dynamic_image(image)
