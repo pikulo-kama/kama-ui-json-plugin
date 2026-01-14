@@ -8,6 +8,17 @@ from kutil.file import read_file
 from kutil.file_type import JSON
 
 
+_rename_keys = {
+    "id": "widget_id",
+    "type": "widget_type",
+    "layout": "layout_type",
+    "section": "section_id",
+    "parent": "parent_widget_id",
+    "style_id": "style_object_name",
+    "alignment": "alignment_string"
+}
+
+
 class JsonMetadataProvider(MetadataProvider):
 
     def provide(self, section_id: str) -> list[WidgetMetadata]:
@@ -20,7 +31,7 @@ class JsonMetadataProvider(MetadataProvider):
 
         transformer = JSONWidgetDataTransformer()
         nested_data = read_file(metadata_file_path, as_json=True)
-        widget_data = transformer.flatten(nested_data)
+        widget_data: list[dict] = transformer.flatten(nested_data)
         metadata = []
 
         for widget in widget_data:
@@ -30,6 +41,10 @@ class JsonMetadataProvider(MetadataProvider):
 
             if stylesheet:
                 widget["stylesheet"] = stylesheet
+
+            for key, target_key in _rename_keys.items():
+                if key in widget:
+                    widget[target_key] = widget.pop(key)
 
             widget_meta = WidgetMetadata(**widget)
             metadata.append(widget_meta)
